@@ -1,4 +1,4 @@
-name: Update Google Sheet Daily
+name: Cnyes News Get
 
 on:
     schedule:
@@ -20,9 +20,15 @@ jobs:
 
             - name: Install dependencies
               run: |
-               pip install gspread google-auth
+               pip install requests pandas openpyxl
               
             - name: Run script
-              env:
-                GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
-              run: python update_sheet.py
+              run: python cnyes.py
+              
+            - name: save csv
+              run: |
+                git config --global user.name "github-actions"
+                git config --global user.email "r36111135@gmail.com"
+                git add news.csv
+                git commit -m "Update news.csv"
+                git push origin main
