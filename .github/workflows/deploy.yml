@@ -1,0 +1,8 @@
+name: Deploy App
+on:
+    workflow_dispatch:
+jobs:
+    call-build:
+        uses: AriArale/test_github_action/.github/workflows/build.yml@main
+        with:
+            version: "3.10"
