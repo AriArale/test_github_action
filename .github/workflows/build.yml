@@ -1,12 +1,13 @@
 name: Build Reusable
 on:
-    workflow_call:
-        inputs:
-            version:
-                required: true
-                type: string
+    workflow_call:                  # This workflow can be called by other actions or workflows
+        inputs:                     # Define inputs that can be passed to this workflow
+            version:                # 外部呼叫的參數名稱, 名稱可自訂
+                required: true      # 是否為必填參數
+                type: string        # 只支援int, bool, string
+                # default: "3.10"
 jobs:
-    build:
+    build:                          # Job name, can be customized
         runs-on: ubuntu-latest
         steps:
             - run: echo "Building version ${{ inputs.version }}"
